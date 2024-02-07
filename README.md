@@ -152,7 +152,7 @@ docker exec ruby_debug_environment bundle exec rails g rspec:install
 {
     "version": "0.2.0",
     "configurations": [
-        # 通常のデバッグ設定
+        // 通常のデバッグ設定
         {
             "type": "rdbg",
             "name": "Debug Ruby",
@@ -160,7 +160,7 @@ docker exec ruby_debug_environment bundle exec rails g rspec:install
             "debugPort": "localhost:12345",
             "localfsMap": "/app:${workspaceFolder}",
         },
-        # Rspecのデバッグ設定
+        // Rspecのデバッグ設定
         {
             "type": "rdbg",
             "name": "Debug Rspec with current file",
@@ -181,7 +181,7 @@ docker exec ruby_debug_environment bundle exec rails g rspec:install
 - `env`に、`Rspec`で使用するテスト`DB`の接続情報を記載する事で、`Rspec`のデバッグ起動時に、その`DB`を参照する
 - `DATABASE_URL`には、`/config/database.yml`の`test`に記載した内容を記述する
 ```json
-# 入力例
+// 入力例
 "env": {
     "DATABASE_URL": "postgresql://root:postgres@localhost:5432/ruby_debug_development_test"
 }
