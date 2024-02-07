@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "rdbg",
+      "name": "Debug Ruby",
+      "request": "attach",
+      "debugPort": "localhost:12345",
+      "localfsMap": "/web:${workspaceFolder}"
+    },
+    {
+      "type": "rdbg",
+      "name": "Debug Rspec with current file",
+      "rdbgPath": "bundle exec rdbg",
+      "request": "launch",
+      "command": "rspec",
+      "script": "${file}",
+      "args": [],
+      "askParameters": true,
+      "env": {
+        // 環境変数を追加
+        "DATABASE_URL": "postgresql://root:postgres@localhost:5432/ruby_debug_development_test"
+      }
+    }
+  ]
+}

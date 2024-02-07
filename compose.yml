@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  db:
+    container_name: pgsql
+    image: postgres:latest
+    env_file: ./db/conf/.env
+    volumes:
+      - ./db/postgres_volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+  web:
+    container_name: ruby_debug_environment
+    build: ./web
+    command: >
+      bash -c "
+        rm -f tmp/pids/server.pid &&
+        bundle install --gemfile /web/Gemfile &&
+        rails db:migrate &&
+        rdbg -n --open --host 0.0.0.0 --port 12345 -c -- bundle exec rails s -p 3000 -b '0.0.0.0'
+      "
+    volumes:
+      - ./web:/web
+    ports:
+      - "3000:3000"
+      - "12345:12345"
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
