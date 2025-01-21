@@ -158,7 +158,7 @@ docker exec ruby_debug_environment bundle exec rails g rspec:install
             "name": "Debug Ruby",
             "request": "attach",
             "debugPort": "localhost:12345",
-            "localfsMap": "/app:${workspaceFolder}",
+            "localfsMap": "/web:${workspaceFolder}",
         },
         // Rspecのデバッグ設定
         {
